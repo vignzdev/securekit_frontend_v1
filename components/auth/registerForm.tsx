@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { register, initiateGoogleAuth } from "@/app/api/auth";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export function RegisterForm({
   className,
@@ -59,8 +60,18 @@ export function RegisterForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
+        <div className="flex justify-start pt-6 pl-6">
+          <Image
+            src="/securekit_logo.svg"
+            alt="Securekit Logo"
+            width={160}
+            height={1}
+            className="h-auto"
+            priority
+          />
+        </div>
         <CardHeader>
-          <CardTitle>Create your Security account</CardTitle>
+          <CardTitle>Create your Securekit account</CardTitle>
           <CardDescription>
             Enter your details below to create your account
           </CardDescription>

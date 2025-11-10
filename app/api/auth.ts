@@ -6,7 +6,6 @@ interface LoginResponse {
   message: string;
   data: {
     accessToken: string;
-    refreshToken: string;
   };
   timestamp: string;
 }
@@ -51,12 +50,18 @@ export const register = async (
   email: string,
   password: string,
   name: string
-) => {
-  const res = await api.post(
+): Promise<LoginResponse> => {
+  const res = await api.post<LoginResponse>(
     "/auth/register",
     { email, password, name },
     { withCredentials: true }
   );
+
+  // Store accessToken in a readable cookie for the interceptor to use
+  if (res.data?.data?.accessToken) {
+    setAccessTokenCookie(res.data.data.accessToken);
+  }
+
   return res.data;
 };
 

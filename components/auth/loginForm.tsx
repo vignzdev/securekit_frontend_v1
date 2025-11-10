@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { login, initiateGoogleAuth } from "@/app/api/auth";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export function LoginForm({
   className,
@@ -65,10 +66,19 @@ export function LoginForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
+        <div className="flex justify-start pt-6 pl-6">
+          <Image
+            src="/securekit_logo.svg"
+            alt="Securekit Logo"
+            width={160}
+            height={1}
+            className="h-auto"
+            priority
+          />
+        </div>
         <CardHeader>
-          <CardTitle>Start using Security Saas</CardTitle>
-          <CardDescription>
-            Enter your email below to start using Security Saas
+          <CardDescription className="text-black">
+            Enter your email to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
