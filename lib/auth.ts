@@ -1,10 +1,41 @@
 import api from "@/lib/api";
 
+export interface PlanFeatures {
+  geoData: boolean;
+  webhooks: boolean;
+  analytics: "basic" | "full";
+  rateLimit: number;
+  teamAccess: boolean;
+  customLists: boolean;
+  prioritySupport: boolean;
+}
+
+export interface Plan {
+  id: string;
+  name: string;
+  monthly_price: string;
+  checks_limit: number;
+  billing_period: string;
+  features: PlanFeatures;
+}
+
+export interface Subscription {
+  id: string;
+  status: string;
+  currentPeriodStart: string;
+  currentPeriodEnd: string;
+  cancelAtPeriodEnd: boolean;
+  canceledAt: string | null;
+  createdAt: string;
+  plan: Plan;
+}
+
 export interface UserProfile {
   id: string;
   email: string;
   name: string;
   profile_image?: string | null;
+  subscription?: Subscription;
 }
 
 interface UserResponse {

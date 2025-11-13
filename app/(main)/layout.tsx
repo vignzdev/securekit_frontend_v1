@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { isAuthenticated } from "@/lib/auth";
+import { isAuthenticated, UserProfile } from "@/lib/auth";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { UserContext } from "@/context/UserContext";
@@ -13,7 +13,7 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const [authChecked, setAuthChecked] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {

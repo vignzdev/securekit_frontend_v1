@@ -10,4 +10,5 @@ export const routeRules: Record<string, "public" | "protected"> = {
   "/analytics": "protected",
   "/settings": "protected",
   "/custom-list": "protected",
+  "/subscription": "protected",
 };
