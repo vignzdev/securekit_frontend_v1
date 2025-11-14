@@ -2,33 +2,20 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { isAuthenticated } from "@/lib/auth";
+import { hasAuthTokenSync } from "@/lib/auth";
 
 export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    let mounted = true;
+    // Lightweight check - only checks if token exists in cookies (no API call)
+    const hasToken = hasAuthTokenSync();
 
-    const checkAuth = async () => {
-      try {
-        const result = await isAuthenticated();
-        if (!mounted) return;
-        if (result?.authenticated) {
-          router.replace("/dashboard"); // user is logged in
-        } else {
-          router.replace("/login"); // not logged in
-        }
-      } catch (err) {
-        if (mounted) router.replace("/login");
-      }
-    };
-
-    checkAuth();
-
-    return () => {
-      mounted = false;
-    };
+    if (hasToken) {
+      router.replace("/dashboard"); // user has token, redirect to dashboard
+    } else {
+      router.replace("/login"); // no token, redirect to login
+    }
   }, [router]);
 
   // Avoid flicker: render nothing until redirect happens

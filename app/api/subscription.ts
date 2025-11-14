@@ -1,4 +1,5 @@
 import api from "@/lib/api";
+import { PlanFeatures } from "@/lib/auth";
 
 export interface PlanDescription {
   short: string;
@@ -12,9 +13,10 @@ export interface SubscriptionPlan {
   monthly_price: string;
   checks_limit: number;
   lemon_squeezy_variant_id: string | null;
-  plan_description: PlanDescription;
   created_at: string;
   billing_period: "MONTHLY" | "YEARLY";
+  features: PlanFeatures;
+  plan_description: PlanDescription;
 }
 
 export interface GetSubscriptionPlansResponse {
