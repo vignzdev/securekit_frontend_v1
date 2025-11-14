@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import {
   IconClipboard,
   IconHome2,
@@ -105,14 +104,7 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <a href="/dashboard" className="flex items-center gap-2">
-                <Image
-                  src="/securekit_logo.svg"
-                  alt="SecureKit Logo"
-                  width={120}
-                  height={1}
-                  className="h-auto"
-                  priority
-                />
+                <span className="text-xl font-bold">securekit</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
